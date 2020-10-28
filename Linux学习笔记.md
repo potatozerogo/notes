@@ -198,6 +198,7 @@ dpkg -b 构建deb安装包，构建deb安装包，同时需要使用野火提供
 apt
 sudo apt update 更新软件列表信息
 sudo apt install xxxx 安装软件
+sudo apt install xxxx -y 默认安装软件
 
 //-----------------------------------------------------------------------
 git
