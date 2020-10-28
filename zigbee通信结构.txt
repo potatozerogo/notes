@@ -1,0 +1,16 @@
+P.nhr dongle收包的序号
+Time 包之间时间间隔
+Length 包长度
+Dest Addeess 目标地址
+
+
+APS Dest Endpoint 目标端点
+APS CLuster Id 目标簇
+APS Profid Id 对应在端点描述符中GenericApp_epDesc>>GENERICAPP_PROFID
+APS Src Endpoint 源端点
+APS Counter 应用层发送数据包累加器 对应变量GenericApp_TransID
+
+
+APS Payload  内容
+LQI 信号强度
+FCS 校验结果

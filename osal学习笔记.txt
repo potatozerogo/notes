@@ -1,0 +1,47 @@
+协议栈设置
+信道设置：f8wconfig.cfg中/* Default channel is Channel 11 - 0x0B */下方
+PAN ID设置：/* Define the default PAN ID.下方
+
+
+
+
+OSAL API
+
+uint8 osal_set_event( uint8 task_id, uint16 event_flag )
+功能：设置任务事件
+参数：任务，任务的事件
+返回：???
+
+uint8 osal_start_timerEx( uint8 taskID, uint16 event_id, uint16 timeout_value )
+功能：设置延时开始的任务事件
+参数：任务，任务的事件，延时时间（单位ms）
+返回：???
+
+新建GENERICAPP任务的新事件
+1、在GENERICAPP.h下，添加定义事件编号，2字节即16位，每一位占一个事件，如：#define GENERICAPP_MY_EVT  0x0004
+2、在GENERICAPP.c下，uint16 GenericApp_ProcessEvent( uint8 task_id, uint16 events )函数里添加if ( events & GENERICAPP_MY_EVT )事件判断。
+
+byte *osal_msg_allocate(uint16 len)
+功能：开一个消息缓存区
+参数：消息长度
+返回：缓存区指针，失败回NULL
+
+byte osal_msg_deallocate(byte *msg_ptr)
+功能：释放消息缓存区
+参数：消息缓存区指针
+返回：ZSUCCESS 成功
+		INVALID_MSG_POINTER 无效消息指针
+		MSG_BUFFER_NOT_AVAIL 缓存正在队列
+		
+byte osal_msg_send(byte destination_task,byte *msg_ptr)
+功能：向其他任务发送消息，在SYS消息事件SYS_EVENT_MSG中处理。
+参数：目标任务ID
+		消息缓存区指针
+返回：ZSUCCESS 成功
+		INVALID_MSG_POINTER 无效消息指针
+		INVALID_TASK 无效任务
+		
+byte *osal_msg_receive(byte task_id)
+功能：提取接收到的消息（处理后需要释放消息缓存）
+参数：提取者的任务ID
+返回：消息缓存区指针，失败回NULL

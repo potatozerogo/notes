@@ -1,0 +1,88 @@
+﻿###P1基础
+I 放大
+O 缩小
+Ctrl+鼠标滚轮 放大缩小
+PgUp 画面上移
+PgDn 画面下移
+Ctrl+PgUp 画面左移
+Ctrl+PgDn 画面右移
+
+###P2元件库一
+菜单options->Design Template 原理图模板统一修改（Title Block、Page Size）
+选中管脚->右键Edit Properties->Browse Spreadsheet 管脚属性统一修改
+菜单Edit->Properties->Package Properties 也可以管脚属性统一修改（只是没有线型）
+
+###P3元件库二
+Ctrl+N 切换至元件的下一个部分
+Ctrl+B 返回至元件的上一个部分
+菜单options->preferences->Grid Dispaly->Pointer sanp to grid 选择是否按照栅格定位图形
+菜单options->Part Properties->User Properties对元件个部件属性做修改（管脚名称的显示隐藏）
+
+###P4元件库三
+菜单options->Part Properties->New可以新建属性（用于画原理图时联系起同一元件各部分）
+
+###P5原理图一
+P 放置元件对话框
+R 元件旋转
+F 放置电源
+G 放置地
+
+###P6原理图二
+W 放置导线
+画线时按住Shift，可以画斜线
+J 放置节点/取消节点
+N 放置网络标号
+X 放置无连接标号
+注意：元件间、电源、地的连接需要用线连接，否则反推容易出错。
+
+###P7原理图三
+B 放置总线
+E 放置总线接入斜线
+放置总线网络标号，范例：ABC[0:31]；ABC需为字母
+F4 连续放置，标号自动递增
+放置总线的分线网络标号，范例：ABC0；ABC与总线相同
+按住Ctrl拖动鼠标可以连续复制总线的分线，标号自动递增（有点像excel）。
+place off-gage connector放置不同图纸间链接的标号。
+
+###P8原理图整体查看
+选中.dns（或单个page） 菜单Edit->Browse 可以罗列出原理图整体设计表单。
+
+###P9原理图查找
+选中.dns（或单个page） 菜单Edit->find 可以按类型查找。
+
+###P10原理图对同一元件修改
+design cache->需要的元件右键 replace cache  更换元件库
+design cache->需要的元件右键 ipdata cache   刷新已更新的元件库
+design cache右键 cleanup cache  清楚cache中已无用的元件
+
+###P11原理图元件操作
+按住Ctrl 可以多选元件
+直接拖动元件，线跟着一起走。按住Alt拖动，只有元件移动。
+H 元件左右翻转
+V 元件上下翻转
+按住Ctrl 拖动元件 可以复制元件
+
+####P12文本、图形操作
+T 放置文本 Ctrl+Enter换行
+
+####P13元件属性修改（封装）
+property editor 单选或者多选元件，右键edit properties打开。
+或者选中整个图纸 菜单edit->properties打开。包括图纸中所有元件。 
+按钮Pivot切换纵/横排列。可以选中多个属性统一修改。
+
+####P14生成网络表
+1、元件位号生成
+选中.dsn 菜单tools->Annotate 
+action:reset part references to ? 复位位号成"?"
+action:uncoditional references updata 无条件生成位号
+
+2、DRC检查
+选中.dsn 菜单tools->design rules check 
+
+3、Netlist 网络表生成
+选中.dsn 菜单tools->create netlist->PCB Editor->确定
+
+
+####P15 OrCAD输出BOM
+菜单Reports->CIS Bill of Materials->standard 把相同项需要合并的值(Value footprint)选中,Keyed打勾。可以选Excel输出。
+
