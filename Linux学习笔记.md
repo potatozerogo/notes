@@ -206,5 +206,6 @@ git pull 远程仓库地址 从远程仓库中更新
 git init 建立仓库
 git add 文件名 添加文件给仓库
 git commit -m "注释" 提交文件给仓库
-git push 远程仓库地址 提交文件给远程仓库
-
+git remote add origin 远程仓库地址 添加远程仓库
+git push -u origin master 提交文件给远程仓库(第一次)
+git push origin master 提交文件给远程仓库
