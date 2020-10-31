@@ -9,6 +9,7 @@ cd ~ //回到用户home目录
 ls //显示当前目录中的文件
 ls -a //显示当前目录中所有文件
 ls -l //显示当前目录中所有文件的详细属性
+ls -lh //显示当前目录中所有文件的详细属性和文件具体大小
 pwd //打印当前路径
 mkdir //创建目录
 rmdir //删除空目录
@@ -222,10 +223,13 @@ sudo mount -t nfs 对方主机IP:对方共享文件夹路径 本地对应路径 
 GCC
 sudo apt install gcc -y //安装gcc
 sudo apt install gcc-arm-linux-gnueabihf -y //安装arm_gcc
-gcc 文件名.c -o 生成文件名称 //制定编译后的文件名
-sudo arm-linux-gnueabihf-gcc 件名.c -o 生成文件名称 //交叉编译arm文件
-
-
+gcc 文件名.c -o 生成文件名称 -v//用gcc编译并连接生成可执行文件，-o制定编译后的文件名，-v显示编译过程
+sudo arm-linux-gnueabihf-gcc 文件名.c -o 生成文件名称 //交叉编译arm文件
+sudo gcc -E 文件名.c -o 预处理文件名.i //生成预处理文件
+sudo gcc -S 预处理文件名.i -o 汇编文件名.s //编译成汇编文件
+sudo gcc -c 汇编文件名.s -o 可重定位文件名.o  //编译成可重定位文件
+sudo gcc 可重定位文件名.o -o 可执行文件名 //连接成可执行文件，默认动态链接
+sudo gcc 可重定位文件名.o -o 可执行文件名 -static //连接成可执行文件，静态链接
 
 
 
