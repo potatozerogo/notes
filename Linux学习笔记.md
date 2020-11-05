@@ -249,11 +249,11 @@ $(MAKE) //一般指Make工具
 $< //第一个依赖文件  
 $^ //全部的依赖文件  
 $@ //目标  
-###模式匹配  
+##模式匹配  
 % //匹配任意多个非空字符  
-###默认规则  
+##默认规则  
 .o文件默认使用.c文件来编译  
-###条件分支
+##条件分支
 ifeq ($(variable),xxx) //ifeg后面有个空格  
 	执行语句  
 else  
@@ -265,6 +265,20 @@ ifneq ($(variable),xxx) //ifeg后面有个空格
 else  
 	执行语句  
 endif  
+##函数
+$(patsubst PATTERN,REPLACEMENT,TEXT) //模式替换  
+$(patsubst %.c,%.o,x.c.c bar.c) 输出 x.c.o bar.o  
+
+$(notdir NAMES...) //去除目录路径，只留文件名  
+$(notdir src/foo.c hacks) 输出 foo.c hacks  
+
+$(wildcard PATTERN) //找出匹配的文件名  
+$(wildcard *.c) 输出 所有.c文件名  
+
+$(foreach VAR,LIST,TEXT) //遍历  
+dirs := a b c d  
+files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))  
+输出 a b c d目录下的所有文件  
 
 
 
