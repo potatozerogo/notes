@@ -230,6 +230,7 @@ sudo gcc -S 预处理文件名.i -o 汇编文件名.s //编译成汇编文件
 sudo gcc -c 汇编文件名.s -o 可重定位文件名.o  //编译成可重定位文件  
 sudo gcc 可重定位文件名.o -o 可执行文件名 //连接成可执行文件，默认动态链接  
 sudo gcc 可重定位文件名.o -o 可执行文件名 -static //连接成可执行文件，静态链接  
+sudo gcc -I头文件目录 //编译添加头文件路径  
 
 //------------------------------------------------------------------------  
 #Makefile
@@ -280,7 +281,28 @@ dirs := a b c d
 files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))  
 输出 a b c d目录下的所有文件  
 
+/------------------------------------------------------------------------  
 
+#文件系统——系统IO编程
+##int fd;//定义文件描述符  
+文件描述符的值实际上是进程中file_struct.fd_array的下标，fd_array的结构体包含了文件的一些信息     
+##fd = open(filename,flags,mode);//打开文件（文件名，打开模式，文件模式）
+###flags://(flag_1|flag_2)
+####主模式，三选一：
+O_RDONLY//只读  
+O_WRONLY//只写
+O_RDWR//读写  
+####副模式，多选：
+O_CREATE//新建模式  
+O_APPEND//追加模式，在文件末尾开始  
+O_DIRECT//直接IO模式  
+O_SYNC//同步模式  
+O_NO_BLOCK//非阻塞模式
+
+##iseek(fd,offset,whence);//
+##write(fd,buff,write_len);//
+##read(fd,buff,read_len);//
+##close(fd);//
 
 
 
