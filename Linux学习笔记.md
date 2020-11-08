@@ -283,26 +283,64 @@ files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))
 
 /------------------------------------------------------------------------  
 
-#文件系统——系统IO编程
+#文件系统-系统IO函数
 ##int fd;//定义文件描述符  
 文件描述符的值实际上是进程中file_struct.fd_array的下标，fd_array的结构体包含了文件的一些信息     
-##fd = open(filename,flags,mode);//打开文件（文件名，打开模式，文件模式）
-###flags://(flag_1|flag_2)
+##fd = open("filename",flags,mode);//打开文件（文件名，打开模式，文件模式）
+###flags://(flag_1|flag_2)多个flag用|连接
 ####主模式，三选一：
 O_RDONLY//只读  
 O_WRONLY//只写
 O_RDWR//读写  
 ####副模式，多选：
-O_CREATE//新建模式  
+O_CREAT//新建模式  
 O_APPEND//追加模式，在文件末尾开始  
-O_DIRECT//直接IO模式  
-O_SYNC//同步模式  
-O_NO_BLOCK//非阻塞模式
+O_DIRECT//直接IO模式，不经过页缓存区，直接磁盘。 
+O_SYNC//同步模式，不需要sync() 就将页缓存区的内容写入磁盘  
+O_NO_BLOCK//非阻塞模式  
+###返回:文件描述符,错误返回-1 
+###open()依赖的库
+<sys/types.h>   
+<sys/stat.h>  
+<fcntl.h>  
 
-##iseek(fd,offset,whence);//
-##write(fd,buff,write_len);//
-##read(fd,buff,read_len);//
-##close(fd);//
+##off_t lseek(int fd,off_t offset,int whence);// 设置读写位置（文件描述符，偏移量，基准位置） 
+###whence
+SEEK_SET //基准位置为文件开头  
+SEEK_CUR //基准位置为当前位置  
+SEEK_END //基准位置为未见末尾  
+
+##size_t read(int fd,void *buff,size_t write_len);//读文件内容 （文件描述符，读buff，读长度） 
+###返回:读到的长度，错误返回-1  
+
+##size_t write(int fd,void *buff,size_t read_len);//读文件内容（文件描述符，写buff，写长度）  
+###返回:写入的长度，错误:返回-1  
+
+##sync();//强制把页缓存区的内容写入磁盘
+页缓存区：一页=4KB  
+
+##close(fd);//关闭文件
+##错误返回-1  
+
+###lseek()read()write()sync()close()依赖的库
+<unistd.h>  
+
+#文件系统-标准IO函数
+fopen()  
+fclose()  
+fread()  
+fwrite()  
+fseek()  
+fflush() //强制把IO缓存区数据写入也缓存区  
+
+##文件IO五大模式
+阻塞模式  
+非阻塞模式  
+IO多路复用  
+异步IO  
+信号驱动IO  
+
+
 
 
 
