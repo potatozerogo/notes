@@ -16,6 +16,7 @@ rmdir //删除空目录
 mv //移动或重命名，文件或目录  
 touch //创建文件  
 cat //打印文件中的内容  
+cat -b 文件名 //打印文件中的内容和行号  
 echo //打印文本  
 echo 文本 >> 文件名 //将文本添加到文件内容最后  
 echo 文本 > 文件名 //将文本替换文件内容  
@@ -64,6 +65,7 @@ ifconfig //设备名称 up 开启网卡
 clear //清屏幕  
 reboot //重启  
 poweroff //关机  
+sudo sh -c '命令内容' //合并命令由于权限  
 
 ##技巧
 命令或文件名自动补全 Tab键  
@@ -301,9 +303,9 @@ files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))
 
 返回:文件描述符,错误返回-1 
 ###open()依赖的库
-- #inclue<sys/types.h>   
-- #inclue<sys/stat.h>  
-- #inclue<fcntl.h>  
+- #include<sys/types.h>   
+- #include<sys/stat.h>  
+- #include<fcntl.h>  
 
 ##off_t lseek(int fd,off_t offset,int whence);// 设置读写位置（文件描述符，偏移量，基准位置） 
 ###whence
@@ -325,7 +327,7 @@ files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))
 
 ###lseek()read()write()sync()close()依赖的库
 
-- #inclue<unistd.h>  
+- #include<unistd.h>  
 
 #文件系统-标准IO函数
 fopen()  
