@@ -66,7 +66,9 @@ clear //清屏幕
 reboot //重启  
 poweroff //关机  
 sudo sh -c '命令内容' //合并命令由于权限  
-
+##进程命令
+pstree //查看进程间关系  
+ps -ef |more //查看进程明显，|more为分页显示  
 ##技巧
 命令或文件名自动补全 Tab键  
 显示可能的文件名 两下Tab键  
@@ -344,7 +346,21 @@ fflush() //强制把IO缓存区数据写入也缓存区
 - 异步IO  
 - 信号驱动IO  
 
+//----------------------------------------------------------------------------  
+#进程
+##pid_t fork(void)//创建子进程  
+返回，老进程返回PID，新进程返回0，失败返回-1  
+依赖的库 #include<unistd.h>  
+##子进程偷梁换柱
+####int execl(const char *path,const char *arg,...,NULL)//列表方式传递参数。execl("执行文件路径","参数1","参数2",...,NULL)  
 
+####int execlp(const char *file,const char *arg,...,NULL)//使用环境变量列表方式传递参数。execl("执行文件","参数1","参数2",...,NULL)  
 
+####char *arg[] = {const char *arg,...,NULL}//参数数组
+####int execv(const char *path,*const arg[])//数组传递参数。execv("执行文件路径",参数数组) 
+
+####char *arg[] = {const char *arg,...,NULL}//参数数组
+####char *envp[] = {const char *arg,...,NULL}//自定义环境变量数组
+####int execv(const char *path,char *const arg[],*char const envp[])//数组传递参数(用户提供自定义环境变量)。execv额("执行文件路径",参数数组，自定义环境变量数组) 
 
 
