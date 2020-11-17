@@ -351,16 +351,37 @@ fflush() //强制把IO缓存区数据写入也缓存区
 ##pid_t fork(void)//创建子进程  
 返回，老进程返回PID，新进程返回0，失败返回-1  
 依赖的库 #include<unistd.h>  
-##子进程偷梁换柱
-####int execl(const char *path,const char *arg,...,NULL)//列表方式传递参数。execl("执行文件路径","参数1","参数2",...,NULL)  
+##exec类子进程偷梁换柱
+####int execl(const char *path,const char *arg,...,NULL)
+//列表方式传递参数。execl("执行文件路径","参数1","参数2",...,NULL)  
+  
+####int execlp(const char *file,const char *arg,...,NULL)
+//使用环境变量列表方式传递参数。execl("执行文件","参数1","参数2",...,NULL)  
+  
+####char *arg[] = {const char *arg,...,NULL}
+//参数数组
+####int execv(const char *path,*const arg[])
+//数组传递参数。execv("执行文件路径",参数数组)   
+  
+####char *arg[] = {const char *arg,...,NULL}
+//参数数组  
+####char *envp[] = {const char *arg,...,NULL}
+//自定义环境变量数组  
+####int execv(const char *path,char *const arg[],*char const envp[])
+//数组传递参数(用户提供自定义环境变量)。execv额("执行文件路径",参数数组，自定义环境变量数组) 
 
-####int execlp(const char *file,const char *arg,...,NULL)//使用环境变量列表方式传递参数。execl("执行文件","参数1","参数2",...,NULL)  
+##进程退出
+####void exit(int status);
+//退出进程，io缓存去数据处理    
+####void _exit(int status);
+//直接退出
 
-####char *arg[] = {const char *arg,...,NULL}//参数数组
-####int execv(const char *path,*const arg[])//数组传递参数。execv("执行文件路径",参数数组) 
+##wait()
+####pid_t wait(*status)
+//等待退出函数  
+返回，成功子进程pid，失败-1  
 
-####char *arg[] = {const char *arg,...,NULL}//参数数组
-####char *envp[] = {const char *arg,...,NULL}//自定义环境变量数组
-####int execv(const char *path,char *const arg[],*char const envp[])//数组传递参数(用户提供自定义环境变量)。execv额("执行文件路径",参数数组，自定义环境变量数组) 
+####WIFEXITED(statue) 正常退出，值为1
+####WEXITSTATUS(status) 获得子进程退出值  
 
 
