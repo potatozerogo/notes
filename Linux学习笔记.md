@@ -68,11 +68,29 @@ reboot //重启
 poweroff //关机  
 sudo sh -c '命令内容' //合并命令由于权限  
 ##进程命令
-pstree //查看进程间关系  
-ps -ef |more //查看进程明显，|more为分页显示 
-ps axjf //查看进程的进程组pgid   
 jobs //查看后台进程  
-fg jobID号 //将进程切换至前台
+fg jobID号 //将进程切换至前台  
+pstree //查看进程间关系  
+ps -ef |more //查看进程明细，|more为分页显示 
+ps aux |more //a:一个终端的所有进程；u:内存使用；x:没有关联的控制终端进程  
+ps axjf //j:进程组pgid,会话sid,父进程ppid；f:以ASCii显示进程层次关系   
+###PS命令显示的列表介绍   
+user：进程是那个用户产生的  
+pid：进程id  
+%cpu：占用cpu的百分比  
+%mem：占用内存的百分比  
+vsz：进程使用虚拟内存大小  
+rss：进程使用物理内存大小  
+tty：进程关联的终端  
+stat：进程的状态  
+start：进程开始的时间   
+time：进程运行的时间  
+commmand： 进程执行的具体程序  
+ppid：父进程id  
+pgid：进程组id  
+sid：进程所在对话的id  
+tpgid：值为-1表示进程为守护进程  
+uid：进程的用户id  
 ##技巧
 命令或文件名自动补全 Tab键  
 显示可能的文件名 两下Tab键  
@@ -222,6 +240,7 @@ git commit -m "注释" //提交文件给仓库
 git remote add origin 远程仓库地址 //添加远程仓库  
 git push -u origin master //提交文件给远程仓库(第一次)  
 git push origin master //提交文件给远程仓库  
+git log //查看版本日志  
 
 //-------------------------------------------------------------------------  
 #共享文件
